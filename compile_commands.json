@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-c",
+      "-Wall",
+      "-Os",
+      "-DF_CPU=16000000UL",
+      "-mmcu=atmega328p",
+      "-Iinclude",
+      "-o",
+      "build/main.elf",
+      "src/main.c"
+    ],
+    "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
+    "file": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/src/main.c",
+    "output": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/build/main.elf"
+  }
+]
