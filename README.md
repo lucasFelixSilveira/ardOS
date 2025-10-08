@@ -11,6 +11,9 @@
 
 ardOS is a minimalist operating system designed specifically for Arduino Uno (ATmega328P), featuring a serial terminal interface, multitasking capabilities, and built-in applications like Snake game and LED control.
 
+> [!WARNING]\
+> Work in progress! **ESP32** `Tensilica Xtensa LX6 (2 cores) 32 bits` was been bought. Waiting the ship for continue and add one more processor compatibility!
+
 ## ✨ Features
 
 - 🖥️ **Serial Terminal Interface** - Interactive command-line interface via UART
@@ -76,7 +79,7 @@ Starts blinking! - Type kill to finish.
 ### Snake Game Controls
 
 - **W/w** - Move up
-- **A/a** - Move left  
+- **A/a** - Move left
 - **S/s** - Move down
 - **D/d** - Move right
 - **K/k** - Quit game
@@ -132,7 +135,7 @@ Stack Overhead:  ~64 bytes (estimated)
 ```c
 // Static allocations:
 char buffer[64];        // Command input buffer
-char temp[16];          // Token parsing buffer  
+char temp[16];          // Token parsing buffer
 uint8_t buffer_index;   // Current buffer position
 Task task;              // Current task state (enum)
 
@@ -184,7 +187,7 @@ uint8_t locale(uint8_t word_index, char* temp, uint8_t temp_size);
 ```c
 // Direct register manipulation (no Arduino abstraction)
 UBRR0H = (uint8_t)(UBRR_VALUE >> 8);    // Baud rate high
-UBRR0L = (uint8_t)UBRR_VALUE;           // Baud rate low  
+UBRR0L = (uint8_t)UBRR_VALUE;           // Baud rate low
 UCSR0B = (1 << RXEN0) | (1 << TXEN0);   // RX/TX enable
 UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8-bit data
 ```
@@ -217,7 +220,7 @@ current@super %    # Command execution
 Contributions are welcome! Here are some ways to help:
 
 1. **Add new commands** - Extend the command set
-2. **Optimize memory usage** - Improve RAM efficiency  
+2. **Optimize memory usage** - Improve RAM efficiency
 3. **Add features** - File system, networking, sensors
 4. **Documentation** - Improve docs and examples
 5. **Bug fixes** - Report and fix issues
@@ -262,7 +265,7 @@ make clean && make
 ```
 Critical paths (16MHz = 62.5ns per cycle):
 ├── UART byte RX: ~87 cycles (5.4μs)
-├── Command parse: ~200-800 cycles  
+├── Command parse: ~200-800 cycles
 ├── String compare: ~10-50 cycles per char
 └── LED toggle: 3 cycles (187ns)
 ```
@@ -305,14 +308,14 @@ avr-gcc -Wall -Os -DF_CPU=16000000UL -mmcu=atmega328p -v
 # Check symbol table
 avr-nm build/main.elf | grep -E "(buffer|temp|task)"
 
-# Disassembly analysis  
+# Disassembly analysis
 avr-objdump -d build/main.elf | head -50
 ```
 
 ### Hardware Debugging
 **LED diagnostic patterns**:
 - Rapid blink (5Hz): Command error
-- Steady on: Command executing  
+- Steady on: Command executing
 - Off: Idle state
 - Inverted blink: Character received
 
@@ -333,7 +336,7 @@ TCCR1B = (1 << CS10);  // No prescaler
 
 // Your code here
 
-// Read cycles elapsed  
+// Read cycles elapsed
 uint16_t cycles = TCNT1;
 ```
 

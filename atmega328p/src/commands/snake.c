@@ -58,7 +58,7 @@ void snake(void) {
         head = new_head;
 
         uart_set_cursor((head / WIDTH) + 1, (head % WIDTH) + 1);
-        uart_send_char('o');
+        uart_send_char('0');
 
         if( length > 1 ) {
             uint8_t neck = body[1];
@@ -71,13 +71,15 @@ void snake(void) {
         uart_set_cursor(ay + 1, ax + 1);
         uart_send_char('@');
 
+        uart_set_cursor(HEIGHT + 1, 1);
+
         if( head == apple && length < 16 ) {
             body[length] = body[length - 1];
             length++;
             apple = (apple + 13) % (WIDTH * HEIGHT);
         }
 
-        _delay_ms(100);
+        _delay_ms(120);
     }
 
     uart_set_cursor(HEIGHT + 1, 1);
