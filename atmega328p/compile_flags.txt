@@ -1,4 +1,0 @@
--I/usr/lib/avr/include
--target avr
--mmcu=atmega328p
--DF_CPU=16000000UL

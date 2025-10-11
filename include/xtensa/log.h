@@ -1,0 +1,7 @@
+// shield/log.c
+void log_error(void);
+void log_info(void);
+void log_success(void);
+void log_running(void);
+void log_stop(void);
+void log_ready(void);

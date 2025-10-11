@@ -11,9 +11,6 @@
 
 ardOS is a minimalist operating system designed specifically for Arduino Uno (ATmega328P), featuring a serial terminal interface, multitasking capabilities, and built-in applications like Snake game and LED control.
 
-> [!WARNING]\
-> Work in progress! **ESP32** `Tensilica Xtensa LX6 (2 cores) 32 bits` was been bought. Waiting the ship for continue and add one more processor compatibility!
-
 ## ✨ Features
 
 - 🖥️ **Serial Terminal Interface** - Interactive command-line interface via UART
