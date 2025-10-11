@@ -55,17 +55,10 @@ void app_main(void) {
     buffer_index = 0;
     task = TASK_IDLE;
     setup();
+    log_ready();
     while(1) {
-        log_error();
-        DELAY(2000);
-        log_info();
-        DELAY(2000);
-        log_success();
-        DELAY(2000);
-        log_running();
-        DELAY(2000);
-        log_stop();
-        DELAY(2000);
+        if( uart_data_available() ) osSerialTerminal();
+        else log_off();
     }
 }
 #endif

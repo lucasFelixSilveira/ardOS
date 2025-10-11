@@ -1,12 +1,16 @@
+#include "config.h"
+#if TARGET_AVR
+#include "shield/log.h"
 #include <util/delay.h>
 
-#include "main.h"
 #include "serial/utils.h"
 #include "memory_economy/strcmp.h"
 #include "commands/blink.h"
 #include "commands/snake.h"
+#endif
 
 #include "utils.h"
+#include "main.h"
 
 void commands(void) {
     buffer[0] = '\0';
@@ -47,7 +51,6 @@ void commands(void) {
         uart_send_string("current@super % cleaned buffer - ERROR: command `");
         uart_send_string(temp);
         uart_send_string("` not found\r\n");
-
-        BLINK(5, PORTB, LOG_PIN);
+        log_info();
     }
 }

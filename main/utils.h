@@ -15,10 +15,10 @@
 
 #define BAUD 9600
 #define UBRR_VALUE ((F_CPU/16/BAUD)-1)
-#define BLINK(times, port, pin) \
+#define BLINK(times, pin) \
     for( uint8_t i = 0; i < times; i++ ) { \
-        INVERT(port, pin); \
-        _delay_ms(BLINK_DELAY_MS); \
+        INVERT(PORTB, pin); \
+        DELAY(BLINK_DELAY_MS); \
     }
 #define DELAY(ms) _delay_ms(ms)
 #else

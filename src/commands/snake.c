@@ -1,7 +1,11 @@
+#include "config.h"
+#if TARGET_AVR
 #include <stdint.h>
 #include <util/delay.h>
 #include "serial/utils.h"
 #include "main.h"
+#include "utils.h"
+#endif
 
 void snake(void) {
     const uint8_t WIDTH = 16;
@@ -79,7 +83,7 @@ void snake(void) {
             apple = (apple + 13) % (WIDTH * HEIGHT);
         }
 
-        _delay_ms(120);
+        DELAY(120);
     }
 
     uart_set_cursor(HEIGHT + 1, 1);

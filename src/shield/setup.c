@@ -9,5 +9,7 @@ void setup(void) {
     gpio_set_direction(LED_RED, GPIO_MODE_OUTPUT);
     gpio_set_direction(LED_GREEN, GPIO_MODE_OUTPUT);
     gpio_set_direction(LED_BLUE, GPIO_MODE_OUTPUT);
+
+    uart_init();
 }
 #endif

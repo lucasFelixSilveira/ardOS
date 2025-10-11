@@ -6,4 +6,6 @@ void log_success(void);
 void log_running(void);
 void log_stop(void);
 void log_ready(void);
+void log_off(void);
+void log_bip(void);
 #endif

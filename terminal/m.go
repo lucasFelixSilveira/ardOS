@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"os/signal"
 	"runtime"
+	"strings"
 	"syscall"
 
 	"github.com/tarm/serial"
@@ -13,9 +15,10 @@ import (
 )
 
 func main() {
-	portName := detectDefaultPort()
-	baudRate := 9600
+	// Solicita a escolha da plataforma e define o baud rate
+	platform, baudRate := selectPlatform()
 
+	portName := detectDefaultPort()
 	c := &serial.Config{Name: portName, Baud: baudRate}
 	port, err := serial.OpenPort(c)
 	if err != nil {
@@ -29,7 +32,7 @@ func main() {
 	}
 	defer term.Restore(int(os.Stdin.Fd()), oldState)
 
-	fmt.Printf("Conntected to the Arduino! %s@%d\r\n", portName, baudRate)
+	fmt.Printf("Connected to the %s! %s@%d\r\n", platform, portName, baudRate)
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -81,5 +84,26 @@ func detectDefaultPort() string {
 	default:
 		log.Fatal("Sistema não suportado")
 		return ""
+	}
+}
+
+func selectPlatform() (string, int) {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Selecione a plataforma (xtensa ou atmega):")
+	for {
+		platform, err := reader.ReadString('\n')
+		if err != nil {
+			log.Printf("Erro ao ler a entrada: %v", err)
+			continue
+		}
+		platform = strings.TrimSpace(strings.ToLower(platform))
+		switch platform {
+		case "xtensa":
+			return "Xtensa", 115200
+		case "atmega":
+			return "ATmega", 9600
+		default:
+			fmt.Println("Plataforma inválida. Por favor, escolha 'xtensa' ou 'atmega':")
+		}
 	}
 }

@@ -1,16 +1,21 @@
+#include "config.h"
+#include "utils.h"
 #include "multithread.h"
+
 #include "main.h"
+
+#if TARGET_AVR
 #include <avr/io.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include "serial/terminal.h"
 #include "serial/utils.h"
-#include "utils.h"
+#endif
 
 void blink(void) {
     while(task == TASK_BLINKING) {
         MULTITHREAD
-        PORTB ^= (1 << LOG_PIN);
-        _delay_ms(300);
+        INVERT(PORTB, LED_GREEN);
+        DELAY(300);
     }
 }

@@ -1,4 +1,3 @@
-
 #include "utils.h"
 #include "pins.h"
 #include "config.h"
@@ -64,5 +63,23 @@ void log_ready(void) {
         SETLOW(PORTB, LED_BLUE);
         SETLOW(PORTB, LED_RED);
         DELAY(100);
+    } while(0);
+}
+
+void log_off(void) {
+    do {
+        SETLOW(PORTB, LED_GREEN);
+        SETLOW(PORTB, LED_BLUE);
+        SETLOW(PORTB, LED_RED);
+    } while(0);
+}
+
+void log_bip(void) {
+    do {
+        for( int i = 0; i < 5; i++ ) {
+            SETHIGH(PORTB, LED_BLUE);
+            DELAY(20);
+            SETLOW(PORTB, LED_BLUE);
+        }
     } while(0);
 }

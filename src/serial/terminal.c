@@ -1,14 +1,18 @@
+#include "config.h"
+#if TARGET_AVR
 #include <avr/io.h>
 #include <stdint.h>
 #include <util/delay.h>
+#include "shield/log.h"
 
 #include "serial/utils.h"
 #include "utils.h"
-#include "memory_economy/locate.h"
+#include "memory_economy/locale.h"
 #include "pins.h"
 
 #include "main.h"
 #include "command_handler.h"
+#endif
 
 void osSerialTerminal(void) {
     char c = uart_receive_char();
@@ -27,12 +31,12 @@ void osSerialTerminal(void) {
         while(temp[len]) len++;
         if( len > 0 && (temp[len-1] == '\r' || temp[len-1] == '\n') ) temp[len-1] = '\0';
 
-        SETHIGH(PORTB, LOG_PIN);
+        log_running();
         uart_send_string("current@super % running ");
         uart_send_string(temp);
         uart_send_string("...\r\n");
         commands();
-        SETLOW(PORTB, LOG_PIN);
+        log_stop();
         return;
     }
 
@@ -50,5 +54,5 @@ void osSerialTerminal(void) {
     uart_send_string("\r");
     uart_send_string("current@user % ");
     uart_send_string(buffer);
-    INVERT(PORTB, LOG_PIN);
+    log_bip();
 }
