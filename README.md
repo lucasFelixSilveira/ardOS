@@ -1,4 +1,3 @@
-```markdown
 # 🔥 ardOS - Arduino Operating System
 
 ![Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-blue?style=for-the-badge&logo=arduino)
@@ -668,4 +667,3 @@ Licensed under the MIT License - see the LICENSE file for details.
 ---
 
 **Made with ❤️ for the Arduino and ESP32 communities**
-```
