@@ -49,7 +49,6 @@ void uart_set_cursor(uint8_t row, uint8_t col) {
 
 #include "utils.h"
 #include "driver/uart.h"
-#include "esp_log.h"
 
 #define UART_PORT_NUM      UART_NUM_0
 #define UART_BAUD_RATE     115200
@@ -77,7 +76,7 @@ uint8_t uart_data_available(void) {
 char uart_receive_char(void) {
     uint8_t data;
     int len = uart_read_bytes(UART_PORT_NUM, &data, 1, portMAX_DELAY);
-    if (len > 0) {
+    if( len > 0 ) {
         return (char)data;
     }
     return 0; // ou algum erro

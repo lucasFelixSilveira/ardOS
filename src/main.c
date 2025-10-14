@@ -41,8 +41,7 @@ int main(void) {
     uart_init();
 
     task = TASK_IDLE;
-
-    _delay_ms(50);
+    DELAY(50);
 
     while(1) {
         if( (!serialMode) && uart_data_available() ) serialMode = true;

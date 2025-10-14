@@ -6,6 +6,8 @@
 #include <avr/io.h>
 #endif
 
+#if TARGET_AVR
+#else
 void log_error(void) {
     do {
         for( int i = 0; i < 2; i++ ) {
@@ -83,3 +85,4 @@ void log_bip(void) {
         }
     } while(0);
 }
+#endif

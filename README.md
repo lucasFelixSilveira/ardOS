@@ -3,7 +3,7 @@
 ![Arduino Uno](https://img.shields.io/badge/Platform-Arduino%20Uno-blue?style=for-the-badge&logo=arduino)
 ![ESP32](https://img.shields.io/badge/Platform-ESP32-blue?style=for-the-badge&logo=espressif)
 ![C Language](https://img.shields.io/badge/Language-C-green?style=for-the-badge&logo=c)
-![ATmega328P and ESP32](https://img.shields.io/badge/MCU-ATmega328P%20|%20ESP32-red?style=for-the-badge)
+![ATmega328P and Xtensa LX6](https://img.shields.io/badge/MCU-ATmega328P%20|%20Xtensa%20LX6-red?style=for-the-badge)
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 > 🎯 **A lightweight, feature-rich operating system for Arduino and ESP32 microcontrollers**
@@ -600,13 +600,16 @@ xtensa-esp32-elf-objdump -t build/ardOS.elf | grep -E "(buffer|temp|task|body)"
 xtensa-esp32-elf-objdump -d build/ardOS.elf | head -50
 ```
 
-### Hardware Debugging (ATmega328P)
-**LED diagnostic patterns**:
-- Rapid blink (5 Hz): Command error
-- Steady on: Command executing
-- Off: Idle state
-- Inverted blink: Character received
+### LED diagnostic patterns
+- **Command error**: Blinks two times red
+- **Off**: Stay idle (off)
+- **Keyboard input**: Blinks five times blue
+- **Stop running commands**: Disable the blue color and blinks one time green
+- **Success**: Blinks one times green
+- **Ready to use**: Blinks one time white
+- **Info**: Blinks one time yellow
 
+### Hardware Debugging (ATmega328P)
 **Oscilloscope checkpoints**:
 - Pin 0 (RX): Idle HIGH (5V)
 - Pin 1 (TX): Data frames
@@ -614,12 +617,6 @@ xtensa-esp32-elf-objdump -d build/ardOS.elf | head -50
 - Crystal pins: 16 MHz square wave
 
 ### Hardware Debugging (ESP32)
-**LED diagnostic patterns**:
-- Rapid blink (5 Hz): Command error
-- Steady on: Command executing
-- Off: Idle state
-- Inverted blink: Character received
-
 **Oscilloscope checkpoints**:
 - GPIO3 (RX): Idle HIGH (3.3V)
 - GPIO1 (TX): Data frames
