@@ -275,7 +275,7 @@ uint8_t body[16];       // Snake body positions (stack, during game)
 
 ## 📋 Shield Criation History
 
-<center>
+<div align="center">
     <div>
         <img width="260px" src="assets/step_0.png">
         <h3>
@@ -288,7 +288,7 @@ uint8_t body[16];       // Snake body positions (stack, during game)
             Improving the prototype
         </h3>
     </div>
-</center>
+</div>
 
 ## 💡 Key Features Explained
 
