@@ -296,9 +296,9 @@ uint8_t body[16];       // Snake body positions (stack, during game)
           </td>
           <td>
               <center>
-                <!--<img width="260px" src="assets/step_2.png">-->
+                <img width="260px" src="assets/logo_banner.png">
                 <h3>
-                    🟡 Making Profissilnal PCB
+                    🟡 Making PCB
                 </h3>
               </center>
           </td>
