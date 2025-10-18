@@ -23,20 +23,19 @@ bool serialMode;
 #include "pins.h"
 #include "main.h"
 #include "utils.h"
-char buffer[256];
-char temp[64];
+char buffer[BUFFER_SIZE];
+char temp[TEMP_SIZE];
 #endif
 
-/* XTENSA FORWARD DECLARATIONS */
+/* XTENSA FORWARD DECLARATIONS -- USED ON XTENSA COMPILATION! */
 
 Task task;
-uint8_t buffer_index;
+uint16_t buffer_index;
 
 #if TARGET_AVR
 int main(void) {
     buffer_index = 0;
-    SETOUTPUT(DDRB, LOG_PIN);
-    SETHIGH(PORTB, LOG_PIN);
+    log_ready();
 
     uart_init();
 
@@ -46,8 +45,12 @@ int main(void) {
     while(1) {
         if( (!serialMode) && uart_data_available() ) serialMode = true;
         if( uart_data_available() ) osSerialTerminal();
-        else SETLOW(PORTB, LOG_PIN);
+        else log_off();
     }
+}
+#elif TARGET_X86
+void _start(void) {
+    kernel_main();
 }
 #else
 void app_main(void) {

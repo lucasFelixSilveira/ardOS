@@ -78,6 +78,23 @@
       "-DARCH_AVR",
       "-o",
       "build/main_atmega.elf",
+      "src/shield/setup.c"
+    ],
+    "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
+    "file": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/src/shield/setup.c",
+    "output": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/build/main_atmega.elf"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-c",
+      "-mmcu=atmega328p",
+      "-O2",
+      "-Wall",
+      "-Iinclude",
+      "-DARCH_AVR",
+      "-o",
+      "build/main_atmega.elf",
       "src/shield/log.c"
     ],
     "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
@@ -150,6 +167,40 @@
     ],
     "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
     "file": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/src/command_handler.c",
+    "output": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/build/main_atmega.elf"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-c",
+      "-mmcu=atmega328p",
+      "-O2",
+      "-Wall",
+      "-Iinclude",
+      "-DARCH_AVR",
+      "-o",
+      "build/main_atmega.elf",
+      "src/features/pipe.c"
+    ],
+    "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
+    "file": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/src/features/pipe.c",
+    "output": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/build/main_atmega.elf"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-c",
+      "-mmcu=atmega328p",
+      "-O2",
+      "-Wall",
+      "-Iinclude",
+      "-DARCH_AVR",
+      "-o",
+      "build/main_atmega.elf",
+      "src/features/thread.c"
+    ],
+    "directory": "/home/dev_lucasfs/Documents/Jail breaker/ardOS",
+    "file": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/src/features/thread.c",
     "output": "/home/dev_lucasfs/Documents/Jail breaker/ardOS/build/main_atmega.elf"
   }
 ]

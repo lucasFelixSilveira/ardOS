@@ -23,8 +23,8 @@ bool serialMode;
 #include "pins.h"
 #include "main.h"
 #include "utils.h"
-char buffer[256];
-char temp[64];
+char buffer[BUFFER_SIZE];
+char temp[TEMP_SIZE];
 #endif
 // commands/blink.c
 void blink(void);
@@ -58,28 +58,30 @@ void uart_send_string(const char* str);
 void uart_send_uint8(unsigned char n);
 void uart_set_cursor(unsigned char row, unsigned char col);
 
-/* XTENSA FORWARD DECLARATIONS */
+/* XTENSA FORWARD DECLARATIONS -- USED ON XTENSA COMPILATION! */
 
 Task task;
-uint8_t buffer_index;
+uint16_t buffer_index;
 
 #if TARGET_AVR
 int main(void) {
     buffer_index = 0;
-    SETOUTPUT(DDRB, LOG_PIN);
-    SETHIGH(PORTB, LOG_PIN);
+    log_ready();
 
     uart_init();
 
     task = TASK_IDLE;
-
-    _delay_ms(50);
+    DELAY(50);
 
     while(1) {
         if( (!serialMode) && uart_data_available() ) serialMode = true;
         if( uart_data_available() ) osSerialTerminal();
-        else SETLOW(PORTB, LOG_PIN);
+        else log_off();
     }
+}
+#elif TARGET_X86
+void _start(void) {
+    kernel_main();
 }
 #else
 void app_main(void) {
@@ -199,9 +201,9 @@ uint8_t locale(uint8_t word_index, char* temp, uint8_t temp_size) {
 void log_error(void) {
     do {
         for( int i = 0; i < 2; i++ ) {
-            SETHIGH(PORTB, LED_RED);
+            SETHIGH(PORTD, LED_RED);
             DELAY(300);
-            SETLOW(PORTB, LED_RED);
+            SETLOW(PORTD, LED_RED);
             DELAY(100);
         }
     } while(0);
@@ -209,11 +211,11 @@ void log_error(void) {
 
 void log_info(void) {
     do {
-        SETHIGH(PORTB, LED_GREEN);
-        SETHIGH(PORTB, LED_RED);
+        SETHIGH(PORTD, LED_GREEN);
+        SETHIGH(PORTD, LED_RED);
         DELAY(300);
-        SETLOW(PORTB, LED_GREEN);
-        SETLOW(PORTB, LED_RED);
+        SETLOW(PORTD, LED_GREEN);
+        SETLOW(PORTD, LED_RED);
         DELAY(100);
     } while(0);
 }
@@ -221,69 +223,82 @@ void log_info(void) {
 void log_success(void) {
     do {
         for( int i = 0; i < 5; i++ ) {
-            SETHIGH(PORTB, LED_GREEN);
+            SETHIGH(PORTD, LED_GREEN);
             DELAY(20);
-            SETLOW(PORTB, LED_GREEN);
+            SETLOW(PORTD, LED_GREEN);
             DELAY(201);
         }
     } while(0);
 }
 
 void log_running(void) {
-    SETHIGH(PORTB, LED_BLUE);
+    SETHIGH(PORTD, LED_BLUE);
 }
 
 void log_stop(void) {
     do {
-        SETLOW(PORTB, LED_BLUE);
+        SETLOW(PORTD, LED_BLUE);
         DELAY(200);
-        SETHIGH(PORTB, LED_GREEN);
+        SETHIGH(PORTD, LED_GREEN);
         DELAY(100);
-        SETLOW(PORTB, LED_GREEN);
+        SETLOW(PORTD, LED_GREEN);
     } while(0);
 }
 
 void log_ready(void) {
     do {
-        SETHIGH(PORTB, LED_GREEN);
-        SETHIGH(PORTB, LED_BLUE);
-        SETHIGH(PORTB, LED_RED);
+        SETHIGH(PORTD, LED_GREEN);
+        SETHIGH(PORTD, LED_BLUE);
+        SETHIGH(PORTD, LED_RED);
         DELAY(300);
-        SETLOW(PORTB, LED_GREEN);
-        SETLOW(PORTB, LED_BLUE);
-        SETLOW(PORTB, LED_RED);
+        SETLOW(PORTD, LED_GREEN);
+        SETLOW(PORTD, LED_BLUE);
+        SETLOW(PORTD, LED_RED);
         DELAY(100);
     } while(0);
 }
 
 void log_off(void) {
     do {
-        SETLOW(PORTB, LED_GREEN);
-        SETLOW(PORTB, LED_BLUE);
-        SETLOW(PORTB, LED_RED);
+        SETLOW(PORTD, LED_GREEN);
+        SETLOW(PORTD, LED_BLUE);
+        SETLOW(PORTD, LED_RED);
     } while(0);
 }
 
 void log_bip(void) {
     do {
         for( int i = 0; i < 5; i++ ) {
-            SETHIGH(PORTB, LED_BLUE);
+            SETHIGH(PORTD, LED_BLUE);
             DELAY(20);
-            SETLOW(PORTB, LED_BLUE);
+            SETLOW(PORTD, LED_BLUE);
         }
     } while(0);
 }
 #include "config.h"
 #if TARGET_AVR
-void setup();
+#include <avr/io.h>
+#include "pins.h"
+#include "utils.h"
+
+void setup(void) {
+    SETOUTPUT(LED_GREEN);
+    SETOUTPUT(LED_RED);
+    SETOUTPUT(LED_BLUE);
+}
 #else
 void setup(void) {
     gpio_reset_pin(LED_RED);
     gpio_reset_pin(LED_GREEN);
     gpio_reset_pin(LED_BLUE);
+
     gpio_set_direction(LED_RED, GPIO_MODE_OUTPUT);
     gpio_set_direction(LED_GREEN, GPIO_MODE_OUTPUT);
     gpio_set_direction(LED_BLUE, GPIO_MODE_OUTPUT);
+
+    gpio_reset_pin(EXTRA_VCC);
+    gpio_set_direction(EXTRA_VCC, GPIO_MODE_OUTPUT);
+    gpio_set_level(EXTRA_VCC, 1);
 
     uart_init();
 }
@@ -415,7 +430,7 @@ void osSerialTerminal(void) {
         }
 
         uint8_t len = 0;
-        while(temp[len]) len++;
+        while( temp[len] ) len++;
         if( len > 0 && (temp[len-1] == '\r' || temp[len-1] == '\n') ) temp[len-1] = '\0';
 
         log_running();
@@ -494,7 +509,7 @@ void uart_set_cursor(uint8_t row, uint8_t col) {
 
 #include "utils.h"
 #include "driver/uart.h"
-#include "esp_log.h"
+#include <string.h>
 
 #define UART_PORT_NUM      UART_NUM_0
 #define UART_BAUD_RATE     115200
@@ -522,7 +537,7 @@ uint8_t uart_data_available(void) {
 char uart_receive_char(void) {
     uint8_t data;
     int len = uart_read_bytes(UART_PORT_NUM, &data, 1, portMAX_DELAY);
-    if (len > 0) {
+    if( len > 0 ) {
         return (char)data;
     }
     return 0; // ou algum erro

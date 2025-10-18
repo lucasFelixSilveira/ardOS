@@ -273,6 +273,23 @@ uint8_t body[16];       // Snake body positions (stack, during game)
 - **FreeRTOS**: Minimal use for task management
 - **No interrupts**: Polling-based UART for compatibility with ATmega code
 
+## 📋 Shield Criation History
+
+<center>
+    <div>
+        <img src="assets/step_0.png">
+        <h3>
+            Creating the prototype
+        </h3>
+    </div>
+    <div>
+        <img src="assets/step_1.png">
+        <h3>
+            Improving the prototype
+        </h3>
+    </div>
+</center>
+
 ## 💡 Key Features Explained
 
 ### Multitasking System

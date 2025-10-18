@@ -49,6 +49,7 @@ void uart_set_cursor(uint8_t row, uint8_t col) {
 
 #include "utils.h"
 #include "driver/uart.h"
+#include <string.h>
 
 #define UART_PORT_NUM      UART_NUM_0
 #define UART_BAUD_RATE     115200

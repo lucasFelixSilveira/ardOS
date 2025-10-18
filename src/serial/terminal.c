@@ -28,7 +28,7 @@ void osSerialTerminal(void) {
         }
 
         uint8_t len = 0;
-        while(temp[len]) len++;
+        while( temp[len] ) len++;
         if( len > 0 && (temp[len-1] == '\r' || temp[len-1] == '\n') ) temp[len-1] = '\0';
 
         log_running();

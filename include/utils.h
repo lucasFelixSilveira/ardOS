@@ -9,9 +9,10 @@
 #define F_CPU 16000000UL
 #define LOG_PIN PB5
 
-#define LED_RED 312
-#define LED_GREEN 12
-#define LED_BLUE 312
+#define LED_RED PD4
+#define LED_GREEN PD2
+#define LED_BLUE PD3
+
 
 #define BAUD 9600
 #define UBRR_VALUE ((F_CPU/16/BAUD)-1)
@@ -28,7 +29,11 @@
 #define LED_RED GPIO_NUM_15
 #define LED_GREEN GPIO_NUM_2
 #define LED_BLUE GPIO_NUM_4
+
+#define EXTRA_VCC GPIO_NUM_22
+
 #define PORTB 0
+#define PORTD 0
 
 #define BLINK(times, gpio_pin) \
     do { \
