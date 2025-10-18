@@ -280,7 +280,7 @@ uint8_t body[16];       // Snake body positions (stack, during game)
         <tr>
           <td>
               <center>
-                <img width="260px" src="assets/step_0.png">
+                <img height="480px" src="assets/step_0.png">
                 <h3>
                     ✅ Creating the prototype
                 </h3>
@@ -288,7 +288,7 @@ uint8_t body[16];       // Snake body positions (stack, during game)
           </td>
           <td>
               <center>
-                <img width="260px" src="assets/step_1.png">
+                <img height="480px" src="assets/step_1.png">
                 <h3>
                     🟡 Improving the prototype
                 </h3>
@@ -296,7 +296,7 @@ uint8_t body[16];       // Snake body positions (stack, during game)
           </td>
           <td>
               <center>
-                <img width="260px" src="assets/logo_banner.png">
+                <img height="480px" src="assets/logo_banner.png">
                 <h3>
                     🟡 Making PCB
                 </h3>
