@@ -277,13 +277,13 @@ uint8_t body[16];       // Snake body positions (stack, during game)
 
 <center>
     <div>
-        <img src="assets/step_0.png">
+        <img width="260px" src="assets/step_0.png">
         <h3>
             Creating the prototype
         </h3>
     </div>
     <div>
-        <img src="assets/step_1.png">
+        <img width="260px" src="assets/step_1.png">
         <h3>
             Improving the prototype
         </h3>
