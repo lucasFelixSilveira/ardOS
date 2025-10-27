@@ -3,3 +3,4 @@ firmware/build/*
 firmware/toolchain/
 target/
 
+*.make
