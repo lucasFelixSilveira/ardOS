@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "firmware_ardos",
-    "project_version":    "055e553-dirty",
+    "project_version":    "7e4e296-dirty",
     "project_path":       "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware",
     "idf_path":           "/home/dev_lucasfs/esp/esp-idf",
     "build_dir":          "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build",
