@@ -1,0 +1,8 @@
+Command: ninja flash
+[1/10] Building ASM object esp-idf/main/CMakeFiles/__idf_main.dir/main.S.obj
+[2/10] Linking C static library esp-idf/main/libmain.a
+[3/10] Performing build step for 'bootloader'
+[1/1] cd "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/bootloader/esp-idf/esptool_py" && /home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/dev_lucasfs/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/bootloader/bootloader.bin
+Bootloader binary size 0x6680 bytes. 0x980 bytes (8%) free.
+[4/10] No install step for 'bootloader'
+[5/10] Completed 'bootloader'

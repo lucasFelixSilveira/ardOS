@@ -1,0 +1,20 @@
+Command: ninja all
+[1/10] Building ASM object esp-idf/main/CMakeFiles/__idf_main.dir/main.S.obj
+[2/10] Linking C static library esp-idf/main/libmain.a
+[3/10] Performing build step for 'bootloader'
+[1/1] cd "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/bootloader/esp-idf/esptool_py" && /home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/dev_lucasfs/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/bootloader/bootloader.bin
+Bootloader binary size 0x6680 bytes. 0x980 bytes (8%) free.
+[4/10] No install step for 'bootloader'
+[5/10] Completed 'bootloader'
+[6/10] Generating esp-idf/esp_system/ld/sections.ld
+[7/10] Building C object CMakeFiles/firmware_ardos.elf.dir/project_elf_src_esp32.c.obj
+[8/10] Linking CXX executable firmware_ardos.elf
+/home/dev_lucasfs/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/../lib/gcc/xtensa-esp-elf/14.2.0/../../../../xtensa-esp-elf/bin/ld: esp-idf/main/libmain.a(main.S.obj): warning: incompatible Xtensa configuration (ABI does not match)
+[9/10] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/firmware_ardos.bin
+[10/10] cd "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/esp-idf/esptool_py" && /home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/dev_lucasfs/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/partition_table/partition-table.bin /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/firmware_ardos.bin
+firmware_ardos.bin binary size 0x2c340 bytes. Smallest app partition is 0x100000 bytes. 0xd3cc0 bytes (83%) free.

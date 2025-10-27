@@ -1,0 +1,21 @@
+Command: ninja flash
+CMake Error at /home/dev_lucasfs/esp/esp-idf/tools/cmake/component.cmake:491 (add_library):
+  Cannot find source file:
+
+    /home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/main/main.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm
+  .ccm .cxxm .c++m .h .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90
+  .f95 .f03 .hip .ispc
+Call Stack (most recent call first):
+  main/CMakeLists.txt:2 (idf_component_register)
+
+
+CMake Error at /home/dev_lucasfs/esp/esp-idf/tools/cmake/component.cmake:491 (add_library):
+  No SOURCES given to target: __idf_main
+Call Stack (most recent call first):
+  main/CMakeLists.txt:2 (idf_component_register)
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+ninja: error: rebuilding 'build.ninja': subcommand failed

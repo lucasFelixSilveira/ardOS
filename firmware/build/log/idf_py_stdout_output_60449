@@ -1,0 +1,60 @@
+Command: ninja flash
+[1/10] Building ASM object esp-idf/main/CMakeFiles/__idf_main.dir/main.S.obj
+[2/10] Linking C static library esp-idf/main/libmain.a
+[3/10] Performing build step for 'bootloader'
+[1/1] cd "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/bootloader/esp-idf/esptool_py" && /home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/dev_lucasfs/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/bootloader/bootloader.bin
+Bootloader binary size 0x6680 bytes. 0x980 bytes (8%) free.
+[4/10] No install step for 'bootloader'
+[5/10] Completed 'bootloader'
+[6/10] Generating esp-idf/esp_system/ld/sections.ld
+[7/10] Linking CXX executable firmware_ardos.elf
+/home/dev_lucasfs/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/../lib/gcc/xtensa-esp-elf/14.2.0/../../../../xtensa-esp-elf/bin/ld: esp-idf/main/libmain.a(main.S.obj): warning: incompatible Xtensa configuration (ABI does not match)
+[8/10] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/firmware_ardos.bin
+[9/10] cd "/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build/esp-idf/esptool_py" && /home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python /home/dev_lucasfs/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/partition_table/partition-table.bin /home/dev_lucasfs/Documents/Jail\ breaker/ardOS/firmware/build/firmware_ardos.bin
+firmware_ardos.bin binary size 0x2c460 bytes. Smallest app partition is 0x100000 bytes. 0xd3ba0 bytes (83%) free.
+[9/10] cd /home/dev_lucasfs/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/dev_lucasfs/esp/esp-idf -D "SERIAL_TOOL=/home/dev_lucasfs/.espressif/python_env/idf5.5_py3.13_env/bin/python;;/home/dev_lucasfs/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D "WORKING_DIRECTORY=/home/dev_lucasfs/Documents/Jail breaker/ardOS/firmware/build" -P /home/dev_lucasfs/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 firmware_ardos.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.10.0
+Serial port /dev/ttyUSB0
+Connecting.......
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 4c:c3:82:0d:17:ec
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x0003cfff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26240 bytes to 16496...
+Writing at 0x00001000... (50 %)
+Writing at 0x000075ee... (100 %)
+Wrote 26240 bytes (16496 compressed) at 0x00001000 in 0.8 seconds (effective 250.7 kbit/s)...
+Hash of data verified.
+Compressed 181344 bytes to 98539...
+Writing at 0x00010000... (14 %)
+Writing at 0x0001c51b... (28 %)
+Writing at 0x00022026... (42 %)
+Writing at 0x00027bc7... (57 %)
+Writing at 0x0002f06c... (71 %)
+Writing at 0x00035bc5... (85 %)
+Writing at 0x0003c312... (100 %)
+Wrote 181344 bytes (98539 compressed) at 0x00010000 in 3.5 seconds (effective 411.5 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.0 seconds (effective 609.4 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
