@@ -1,2 +1,5 @@
+firmware/build/
 firmware/build/*
-firmware/toolchain
+firmware/toolchain/
+target/
+

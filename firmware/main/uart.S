@@ -1,6 +1,3 @@
-#include <xtensa/coreasm.h>
-#include <xtensa/corebits.h>
-
 // UART REGISTERS (UART0)
 #define UART_BASE          0x3FF40000
 #define UART_FIFO          (UART_BASE + 0x000)
@@ -36,7 +33,6 @@ uart_send:
     movi a5, 127
     bge a4, a5, 1b
 
-    // Enviar caractere
     movi a3, UART_FIFO
     s32i a2, a3, 0
     ret
@@ -49,7 +45,6 @@ uart_receive:
 
     beqz a3, 2f
 
-    // Ler caractere
     movi a2, UART_FIFO
     l32i a2, a2, 0
     ret

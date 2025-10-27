@@ -1,6 +1,3 @@
-#include <xtensa/coreasm.h>
-#include <xtensa/corebits.h>
-
 // GPIO REGISTERS
 #define GPIO_OUT_REG        0x3FF44004
 #define GPIO_ENABLE_W1TS    0x3FF44024
