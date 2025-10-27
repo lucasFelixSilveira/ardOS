@@ -1,4 +1,2 @@
-0.0.1/build/*
-linker.ld
 firmware/build/*
 firmware/toolchain

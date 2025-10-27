@@ -1,1 +1,0 @@
-/home/dev_lucasfs/esp/esp-idf/components/mbedtls/mbedtls/library/error.c
