@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ARD OS - A bit polished OS</title>
+    </head>
+    <body>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: url("./bg.jpg");
+                background-position: center;
+            }
+
+            #top {
+                background-color: #1d1d1ddd;
+                display: flex;
+                align-items: end;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            #top > div {
+                padding: 6rem 8rem;
+            }
+
+            #top > div > h2 {
+                font-family: sans-serif;
+                color: #fefefe;
+            }
+
+            #top > div > h1 {
+                font-family: sans-serif;
+                font-size: 3rem;
+                font-weight: 900;
+                color: steelblue;
+            }
+
+            #top > div > a > button:hover {
+                background-color: transparent;
+                color: steelblue;
+                transform: translateY(-5px);
+            }
+
+            #top > div > a > button {
+                outline: none;
+                cursor: pointer;
+                margin-top: 20px;
+                margin-right: 10px;
+                font-size: 1.5rem;
+                padding: 6px 20px;
+                background-color: steelblue;
+                border: steelblue 1px solid;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+                transition: 0.4s;
+            }
+
+            #top > div > p {
+                font-family: 0.6rem;
+                margin-top: 15px;
+                color: #ccc;
+                font-family: sans-serif;
+            }
+
+            .loading {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: #1d1d1d;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: loading-bg 2s;
+                opacity: 0;
+            }
+
+            img.logo {
+                width: 400px;
+                animation: loading 2s;
+                opacity: 0;
+            }
+
+            @keyframes loading {
+                0% {
+                    transform: scale3d(2, 2, 2);
+                    opacity: 0;
+                }
+                15%,
+                40% {
+                    transform: scale3d(1, 1, 1);
+                    opacity: 1;
+                }
+                60% {
+                    opacity: 0;
+                }
+            }
+
+            @keyframes loading-bg {
+                0% {
+                    opacity: 1;
+                }
+                15%,
+                40% {
+                    transform: scale3d(1, 1, 1);
+                    opacity: 1;
+                }
+                60% {
+                    opacity: 0;
+                }
+            }
+        </style>
+
+        <section id="top">
+            <div>
+                <h1>ARD OS</h1>
+                <h2>
+                    Transforme seu ESP32 em um computador <br />
+                    funcional em poucos cliques!
+                </h2>
+                <a href="https://github.com/lucasFelixSilveira/ArdOS">
+                    <button class="type-1">Download</button>
+                </a>
+                <a href="">
+                    <button class="type-1">Ver mais</button>
+                </a>
+                <p>
+                    Descubra um mundo novo em seus
+                    <strong>Microcontroladores</strong>
+                </p>
+            </div>
+        </section>
+        <div class="loading">
+            <img class="logo" src="./logo.png" />
+        </div>
+    </body>
+    <script>
+        setTimeout(
+            () => {
+                document.querySelector(".loading").style = "display: none;";
+            },
+            ((1000 * 2) / 100) * 60 + 5,
+        );
+    </script>
+</html>
